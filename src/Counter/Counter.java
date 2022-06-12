@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Counter {
+    int maxCount;
     //    Method of reading the stream to string
     public static StringBuilder readWords() {
         StringBuilder words = new StringBuilder();
@@ -19,13 +20,13 @@ public class Counter {
         }
         return words;
     }
-
+    //      Method of counting words in the text
     public String counter() {
         String[] wordsTOCount;
+        int maxCount = 0;
         StringBuilder result = new StringBuilder();
         wordsTOCount = readWords().toString().split(" ");
-
-        for (int i = 0; i < wordsTOCount.length ; i++) {
+        for (int i = 0; i < wordsTOCount.length; i++) {
 
             if (wordsTOCount[i] != null) {
                 int count = 0;
@@ -35,11 +36,27 @@ public class Counter {
                         count++;
                         wordsTOCount[j] = null;
                     }
-
                 result.append(buffer).append(" ").append(count).append("\n");
+                if (count > maxCount){
+                    maxCount = count;
+                }
             }
-
         }
+        this.maxCount = maxCount;
         return result.toString();
+    }
+    //      Method for sorted result
+    public String sortedCounter() {
+        String[] arrayForSorted;
+        StringBuilder sortedResult = new StringBuilder();
+        arrayForSorted = counter().split("\n");
+        for (Integer i = maxCount; i >= 1; i--) {
+            for (int j = 0; j < arrayForSorted.length; j++) {
+                if (arrayForSorted[j].contains(i.toString())) {
+                    sortedResult.append(arrayForSorted[j]).append("\n");
+                }
+            }
+        }
+        return sortedResult.toString();
     }
 }

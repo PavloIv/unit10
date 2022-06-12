@@ -9,11 +9,8 @@ public class Main {
         ValidatorPhoneNumbers first = new ValidatorPhoneNumbers();
         System.out.println(first.validator());
         Counter newCounter = new Counter();
-        System.out.println(newCounter.counter());
+        System.out.println(newCounter.sortedCounter());
         ConvertToObject newConvert = new ConvertToObject();
         newConvert.writeToConvert();
-
-
-
     }
 }
